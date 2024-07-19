@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import SingUp from "./pages/SingUp";
 import ContactUs from "./pages/ContactUs";
@@ -8,17 +8,16 @@ import Profile from "./pages/Profile";
 import Catalog from "./pages/Catalog";
 import Admin from "./pages/Admin";
 import Booking from "./pages/Booking";
- import Details from "./pages/Details";
-
+import Details from "./pages/Details";
+import { Link } from "react-router-dom";
 function App() {
- 
-
   return (
     <>
-       <BrowserRouter>
-      {/* <OurStory/> */}
-      <Routes>
-          <Route path='/' element={<Home />} />
+
+      
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="SingUp" element={<SingUp />} />
           <Route path="contactUs" element={<ContactUs />} />
           <Route path="Admin" element={<Admin />} />
@@ -28,10 +27,10 @@ function App() {
           <Route path="Details" element={<Details />} />
           <Route path="Catalog" element={<Catalog />} />
           <Route path="Booking" element={<Booking />} />
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
