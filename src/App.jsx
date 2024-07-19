@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import NavBar from "./components/NavBar";
+
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import SingUp from "./pages/SingUp";
@@ -11,12 +13,13 @@ import Admin from "./pages/Admin";
 import Booking from "./pages/Booking";
 import Details from "./pages/Details";
 import Footer from "./components/Footer";
+import { Link } from "react-router-dom";
+
 function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
-
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="SingUp" element={<SingUp />} />
@@ -29,7 +32,9 @@ function App() {
           <Route path="Catalog" element={<Catalog />} />
           <Route path="Booking" element={<Booking />} />
         </Routes>
+
         <Footer />
+
       </BrowserRouter>
     </>
   );
