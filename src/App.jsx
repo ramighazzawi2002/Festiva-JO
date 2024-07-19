@@ -10,10 +10,11 @@ import Admin from "./pages/Admin";
 import Booking from "./pages/Booking";
 import Details from "./pages/Details";
 import { Link } from "react-router-dom";
-// import ToolkitSection from "./components/ToolkitSection";
 function App() {
   return (
     <>
+
+      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
