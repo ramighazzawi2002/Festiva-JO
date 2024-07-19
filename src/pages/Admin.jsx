@@ -496,6 +496,8 @@ const Admin = () => {
   const [showAddEventForm, setShowAddEventForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
+
+
   const handleAddEvent = async e => {
     e.preventDefault();
     const newEvent = {
@@ -531,7 +533,6 @@ const Admin = () => {
     }
   };
   // const [deleteData, deleteDataFun] = deletePostData();
-
   //   const handleDeleteEvent = id => {
   //     const url = `https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
   //     deleteDataFun(url);
@@ -542,10 +543,11 @@ const Admin = () => {
   const handleDeleteEvent = (id, url) => {
     const urlVar = `${url}/${id}.json`;
     deleteDataFun(urlVar);
+
   };
 
   const filteredCustomers = customers.filter(
-    customer =>
+    (customer) =>
       customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       customer.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -658,14 +660,14 @@ const Admin = () => {
                     type="text"
                     placeholder="Event Name"
                     value={newEventName}
-                    onChange={e => setNewEventName(e.target.value)}
+                    onChange={(e) => setNewEventName(e.target.value)}
                     className="border p-2 rounded"
                     required
                   />
                   <input
                     type="date"
                     value={newEventDate}
-                    onChange={e => setNewEventDate(e.target.value)}
+                    onChange={(e) => setNewEventDate(e.target.value)}
                     className="border p-2 rounded"
                     required
                   />
@@ -673,7 +675,7 @@ const Admin = () => {
                     type="number"
                     placeholder="Available Tickets"
                     value={newEventTickets}
-                    onChange={e => setNewEventTickets(e.target.value)}
+                    onChange={(e) => setNewEventTickets(e.target.value)}
                     className="border p-2 rounded"
                     required
                   />
@@ -697,7 +699,7 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {events.map(event => (
+                {events.map((event) => (
                   <tr key={event.id} className="border-b">
                     <td className="p-2">{event.title}</td>
                     <td className="p-2">{event.date}</td>
@@ -745,7 +747,7 @@ const Admin = () => {
                   type="text"
                   placeholder="Search customers..."
                   value={searchTerm}
-                  onChange={e => setSearchTerm(e.target.value)}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full border p-2 pl-10 rounded"
                 />
                 <Search
@@ -764,7 +766,7 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredCustomers.map(customer => (
+                {filteredCustomers.map((customer) => (
                   <tr key={customer.id} className="border-b">
                     <td className="p-2">{customer.name}</td>
                     <td className="p-2">{customer.email}</td>
@@ -830,6 +832,7 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
+
                 {messages.map(message => (
                   <tr key={message.id} className="border-b">
                     <td className="p-2">{message.name}</td>
