@@ -16,6 +16,7 @@ function App() {
   return (
     <>
        <BrowserRouter>
+      {/* <OurStory/> */}
       <Routes>
           <Route path='/' element={<Home />} />
           <Route path="SingUp" element={<SingUp />} />
