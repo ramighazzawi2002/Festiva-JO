@@ -1,36 +1,36 @@
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home"
+
+import Logout from "./pages/Logout";
+import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
-import SingUp from "./pages/SingUp";
+import SignUp from "./pages/SignUp";
 import ContactUs from "./pages/ContactUs";
 import OurStory from "./pages/OurStory";
 import Profile from "./pages/Profile";
 import Catalog from "./pages/Catalog";
 import Admin from "./pages/Admin";
 import Booking from "./pages/Booking";
- import Details from "./pages/Details";
+import Details from "./pages/Details";
 
 function App() {
- 
-
   return (
-    <>
-       <BrowserRouter>
+    <BrowserRouter>
       <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path="SingUp" element={<SingUp />} />
-          <Route path="contactUs" element={<ContactUs />} />
-          <Route path="Admin" element={<Admin />} />
-          <Route path="Profile" element={<Profile />} />
-          <Route path="OurStory" element={<OurStory />} />
-          <Route path="LogIn" element={<LogIn />} />
-          <Route path="Details" element={<Details />} />
-          <Route path="Catalog" element={<Catalog />} />
-          <Route path="Booking" element={<Booking />} />
+        <Route path="/" element={<Home />} />
+        <Route path="SignUp" element={<SignUp />} />
+        <Route path="LogIn" element={<LogIn />} />
+        <Route path="Logout" element={<Logout />} />
+        <Route path="ContactUs" element={<ContactUs />} />
+        <Route path="OurStory" element={<OurStory />} />
+        <Route path="Profile" element={<Profile />} />
+        <Route path="Catalog" element={<Catalog />} />
+        <Route path="Admin" element={<Admin />} />
+        <Route path="Booking" element={<Booking />} />
+        <Route path="Details" element={<Details />} />
       </Routes>
     </BrowserRouter>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
