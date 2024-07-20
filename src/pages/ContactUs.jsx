@@ -11,7 +11,7 @@
 
 // const ContactUs = () => {
 //   return (
-//     <div className="container">
+//     <div className="cont">
 //       <form>
 //         <h1 style={{ paddingBottom: '30px' }}>Contact Us </h1>
 //         <input type="text" id="firstName" placeholder="Name" required />
@@ -70,7 +70,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="container">
+    <div className="cont">
       <form onSubmit={handleSubmit}>
         <h1 style={{ paddingBottom: '30px' }}>Contact Us</h1>
         <input
@@ -98,12 +98,7 @@ const ContactUs = () => {
         <input type="submit" value="Send" id="button" />
         {status && <p>{status}</p>}
       </form>
-      {/* <div className="top-left">
-        <img src="/bg.png" alt="Top Left" />
-      </div>
-      <div className="bottom-right">
-        <img src="/bg.png" alt="Bottom Right" />
-      </div> */}
+    
     </div>
   );
 };
