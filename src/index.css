@@ -1,0 +1,22 @@
+.btnImg {
+    background-image: url('./assets/img/shm.png');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+   
+  }
+  
+  .btn span {
+    margin-top: 0px; 
+  }
+.textCol{
+    color:#C80036;
+}
+body{
+  background-color:#fcf9f3; 
+}
