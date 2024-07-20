@@ -25,7 +25,7 @@ const SignUp = () => {
       );
 
       await axios.post(
-        "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json",
+        "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json",
         {
           active: true,
           email: registerEmail,

@@ -24,7 +24,7 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        'https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/emails.json',
+        'https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/emails.json',
         { email }
       );
   
