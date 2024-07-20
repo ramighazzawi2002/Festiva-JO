@@ -1,10 +1,10 @@
+
 import React, { useState } from 'react';
 import { CreditCard } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import getData from '../hooks/getData';
 import SuccessAlert from '../components/SuccessAlert';
 import ErrorAlert from '../components/ErrorAlert';
-// import Payment from './Payment';
 import StripeContainer from './StripeContainer';
 
 const PayPalIcon = () => (
@@ -17,6 +17,9 @@ const PayPalIcon = () => (
     strokeWidth="2" 
     strokeLinecap="round" 
     strokeLinejoin="round" 
+
+
+
     className="w-8 h-8"
   >
     <path d="M7 11C7 11 7.5 14.5 10 14.5C13.5 14.5 15 11 15 11C15 11 14.5 7.5 12 7.5C8.5 7.5 7 11 7 11Z" />
@@ -26,17 +29,19 @@ const PayPalIcon = () => (
 );
 
 const CheckOut = () => {
-  const [paymentMethod, setPaymentMethod] = useState('credit-card');
-  const [couponCode, setCouponCode] = useState('');
+
+  const [paymentMethod, setPaymentMethod] = useState("credit-card");
+  const [couponCode, setCouponCode] = useState("");
   const [cardInfo, setCardInfo] = useState({
-    cardNumber: '',
-    cardName: '',
-    expiryDate: '',
-    cvv: ''
+    cardNumber: "",
+    cardName: "",
+    expiryDate: "",
+    cvv: "",
   });
   const navigate = useNavigate();
   const [orderDetails] = useState({
     items: [
+
       { name: 'Product 1', price: 19.99, quantity: 1 },
       { name: 'Product 2', price: 29.99, quantity: 2 },
     ],
@@ -50,6 +55,7 @@ const CheckOut = () => {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [errorMessages, setErrorMessages] = useState("");
+
   const handlePaymentMethodChange = (method) => {
     setPaymentMethod(method);
   };
@@ -61,14 +67,28 @@ const CheckOut = () => {
   const handleCardInfoChange = (e) => {
     setCardInfo({
       ...cardInfo,
+
       [e.target.name]: e.target.value
+
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Checkout submitted', { paymentMethod, couponCode, cardInfo, orderDetails });
-    navigate('/Booking');
+   sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
+    sessionStorage.setItem("paymentMethod", paymentMethod);
+    sessionStorage.setItem("cardInfo", JSON.stringify(cardInfo));
+    sessionStorage.setItem("couponCode", couponCode);
+
+    console.log("Checkout submitted", {
+      paymentMethod,
+      couponCode,
+      cardInfo,
+      orderDetails,
+    });
+    navigate("/Booking");
+  };
+    
   };
 
 
@@ -110,12 +130,29 @@ const CheckOut = () => {
     <div className="py-12 mt-20">
     <SuccessAlert message="Coupon code applied successfully" show={showSuccessAlert} />
     <ErrorAlert error={errorMessages} show={showErrorAlert} />
+
+    // تخزين معلومات الحجز في sessionStorage
+//     sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
+//     sessionStorage.setItem("paymentMethod", paymentMethod);
+//     sessionStorage.setItem("cardInfo", JSON.stringify(cardInfo));
+//     sessionStorage.setItem("couponCode", couponCode);
+
+//     console.log("Checkout submitted", {
+//       paymentMethod,
+//       couponCode,
+//       cardInfo,
+//       orderDetails,
+//     });
+//     navigate("/Booking");
+//   };
+
+  return (
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="md:flex">
             <div className="md:w-2/3 p-8">
               <h1 className="text-3xl font-bold mb-6">Checkout</h1>
-              
+
               <div className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
                 <div className="space-y-4">
@@ -123,8 +160,10 @@ const CheckOut = () => {
                     <input
                       type="radio"
                       className="form-radio text-blue-500"
+
                       checked={paymentMethod === 'credit-card'}
                       onChange={() => handlePaymentMethodChange('credit-card')}
+
                     />
                     <CreditCard className="w-8 h-8 ml-4 text-gray-600" />
                     <span className="ml-4 font-medium">Credit Card</span>
@@ -133,14 +172,17 @@ const CheckOut = () => {
                     <input
                       type="radio"
                       className="form-radio text-blue-500"
+
                       checked={paymentMethod === 'paypal'}
                       onChange={() => handlePaymentMethodChange('paypal')}
+
                     />
                     <PayPalIcon />
                     <span className="ml-4 font-medium">PayPal</span>
                   </label>
                 </div>
               </div>
+
               
               {paymentMethod === 'credit-card' && (
                 <div className="mb-8 space-y-4 ">
@@ -154,6 +196,7 @@ const CheckOut = () => {
                 </div>
               )}
               
+             
               <div className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">Have a coupon?</h2>
                 <div className="flex">
@@ -164,12 +207,14 @@ const CheckOut = () => {
                     placeholder="Enter coupon code"
                     className="flex-grow border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
+
                   <button onClick={applyCoupon} className="bg-blue-500 text-white px-6 py-2 rounded-r-lg hover:bg-blue-600 transition-colors">
+
                     Apply
                   </button>
                 </div>
               </div>
-              
+
               <button
                 onClick={handleSubmit}
                 className="w-full bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"
@@ -177,13 +222,15 @@ const CheckOut = () => {
                 Place Order
               </button>
             </div>
-            
+
             <div className="md:w-1/3 bg-gray-50 p-8">
               <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
               <div className="space-y-4">
                 {orderDetails.items.map((item, index) => (
                   <div key={index} className="flex justify-between">
+
                     <span>{item.name} x{item.quantity}</span>
+
                     <span>${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
@@ -217,6 +264,4 @@ const CheckOut = () => {
 };
 
 export default CheckOut;
-
-
 

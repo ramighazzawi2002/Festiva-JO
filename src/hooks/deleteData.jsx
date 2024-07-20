@@ -4,7 +4,7 @@ import { useState } from "react";
 function deletePostData() {
   const [data, setData] = useState(null);
 
-  const postData = async url => {
+  const postData = async (url) => {
     try {
       const response = await axios.patch(url, { isDeleted: true });
       setData(response.data);
