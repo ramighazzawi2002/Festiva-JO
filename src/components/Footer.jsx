@@ -71,7 +71,7 @@ export default Footer;
 //     useEffect(() => {
 //         const getData = async () => {
 //             try {
-//                 const response = await axios.get('https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json');
+//                 const response = await axios.get('https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json');
 //                 const data = response.data;
 //                 if (data && data[userId]) {
 //                     const user = data[userId];
@@ -101,7 +101,7 @@ export default Footer;
 //                 setProfileImage(imageUrl); 
 
                 
-//                 await axios.put(`https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`, { profileImage: imageUrl });
+//                 await axios.put(`https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`, { profileImage: imageUrl });
 //             } catch (error) {
 //                 console.error("Error uploading image:", error);
 //             }
@@ -112,11 +112,11 @@ export default Footer;
 //         e.preventDefault();
 //         try {
            
-//             const response = await axios.get(`https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`);
+//             const response = await axios.get(`https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`);
 //             const currentUserData = response.data;
 //             const updatedUser = { ...currentUserData, name, email, profileImage };
 
-//             await axios.put(`https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`, updatedUser);
+//             await axios.put(`https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`, updatedUser);
 //             alert('Profile updated successfully!');
 //         } catch (error) {
 //             console.error("Error updating data:", error);
@@ -198,7 +198,7 @@ export default Footer;
 
 //     try {
 //       const response = await axios.post(
-//         'https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/emails.json',
+//         'https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/emails.json',
 //         { email }
 //       );
   
