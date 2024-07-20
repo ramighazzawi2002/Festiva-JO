@@ -14,7 +14,6 @@ import Booking from "./pages/Booking";
 import Details from "./pages/Details";
 
 import Footer from "./components/Footer";
-import { Link } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import CheckOut from "./pages/checkout";
 function App() {
@@ -35,6 +34,7 @@ function App() {
           <Route path="Booking" element={<Booking />} />
           <Route path="Details" element={<Details />} />
           <Route path="checkout" element={<CheckOut/>} />
+
         </Routes>
         {/* <Footer /> */}
       </BrowserRouter>

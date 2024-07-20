@@ -1,16 +1,62 @@
-import React from 'react';
-import { Check, Download } from 'lucide-react';
+import React from "react";
+import { Check, Download } from "lucide-react";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 const BookingConfirmed = () => {
-  const orderDetails = {
-    orderNumber: '123456',
-    date: new Date().toLocaleDateString(),
-    total: 54.98,
-  };
+  const orderDetails = JSON.parse(sessionStorage.getItem("orderDetails")) || {};
+  const paymentMethod = sessionStorage.getItem("paymentMethod");
+  const cardInfo = JSON.parse(sessionStorage.getItem("cardInfo")) || {};
+  const couponCode = sessionStorage.getItem("couponCode");
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getDate()}/${
+    currentDate.getMonth() + 1
+  }/${currentDate.getFullYear()}`;
 
   const handleDownloadTicket = () => {
-    // Here you would implement the logic to generate and download the PDF ticket
-    console.log('Downloading ticket as PDF');
+    const doc = new jsPDF();
+
+    // Title
+    doc.setFontSize(22);
+    doc.setFont("Helvetica", "bold");
+    doc.text("Reservation Confirmation", 14, 20);
+
+    // Subtitle
+    doc.setFontSize(16);
+    doc.setFont("Helvetica", "normal");
+    doc.text(
+      "Thank you for your purchase. Your order has been confirmed.",
+      14,
+      30
+    );
+
+    // Reservation details
+    doc.autoTable({
+      startY: 40,
+      head: [["Field", "Value"]],
+      body: [
+        ["Name", formattedDate || "N/A"],
+        ["Booking Date", formattedDate || "N/A"],
+        ["Total Price", `$${orderDetails.total?.toFixed(2) || "0.00"}`],
+        ["Payment Method", paymentMethod || "N/A"],
+        ["Coupon Code", couponCode || "N/A"],
+      ],
+      theme: "grid",
+      headStyles: { fillColor: [0, 100, 255] },
+      bodyStyles: { fillColor: [255, 255, 255] },
+      margin: { top: 50 },
+    });
+
+    // Footer
+    doc.setFontSize(10);
+    doc.text(
+      "This is an automatically generated document. Please keep it for your records.",
+      14,
+      doc.internal.pageSize.height - 20
+    );
+
+    // Save the PDF
+    doc.save("booking_confirmation.pdf");
   };
 
   return (
@@ -22,18 +68,20 @@ const BookingConfirmed = () => {
               <Check className="h-8 w-8 text-green-500" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-center mb-4">Booking Confirmed!</h1>
+          <h1 className="text-2xl font-bold text-center mb-4">
+            Booking Confirmed!
+          </h1>
           <p className="text-gray-600 text-center mb-6">
             Thank you for your purchase. Your order has been confirmed.
           </p>
           <div className="border-t border-b border-gray-200 py-4 mb-6">
             <div className="flex justify-between mb-2">
               <span className="font-semibold">Order Number:</span>
-              <span>{orderDetails.orderNumber}</span>
+              <span>{cardInfo.cardName}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span className="font-semibold">Date:</span>
-              <span>{orderDetails.date}</span>
+              <span>{formattedDate}</span>
             </div>
             <div className="flex justify-between">
               <span className="font-semibold">Total:</span>
