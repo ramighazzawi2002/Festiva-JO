@@ -203,8 +203,7 @@ export default function Home() {
   ];
 
   return (
-    <div className=" mx-auto p-4 bg-page">
-      <Navbar />
+    <div className=" mx-auto p-4 bg-page ">
       <div className="slider-hero mb-8 mx-4 sm:mx-8">
         <Slider {...sliderSettings}>
           {slides.map(slide => (
@@ -230,7 +229,7 @@ export default function Home() {
               <p className="text-lg text-gray-600 mb-6">
                 Festivals bring people together, celebrating the diverse and rich cultural heritage of Jordan. They offer a unique opportunity to experience the country's traditions, music, dance, and food. Join us in celebrating and preserving these traditions for future generations.
               </p>
-              <a href="#about" className="bg-red-500 text-white py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-red-600 transition duration-300">Learn More</a>
+              <a href="#about" className="bg-red1 text-white py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-red2 transition duration-300">Learn More</a>
             </div>
             <div className="md:w-1/2">
               <img src="./src/assets/img/joflag.png" alt="Festival Image" className="rounded-lg shadow-md" />
@@ -339,7 +338,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 }

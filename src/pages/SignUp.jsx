@@ -59,36 +59,75 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h3> Register User </h3>
-      <input
-        id="RrgName"
-        placeholder="Name..."
-        value={registerName}
-        onChange={(event) => setRegisterName(event.target.value)}
-      />
-      <input
-        id="RrgEmail"
-        placeholder="Email..."
-        value={registerEmail}
-        onChange={(event) => setRegisterEmail(event.target.value)}
-      />
-      <input
-        id="RrgPassword"
-        placeholder="Password..."
-        type="password"
-        value={registerPassword}
-        onChange={(event) => setRegisterPassword(event.target.value)}
-      />
-      <button onClick={register}> Create User</button>
-      <GoogleButton onClick={handleGoogleSignUp} />
-      <div className="links">
+    // <div>
+    //   <h3> Register User </h3>
+    //   <input
+    //     id="RrgName"
+    //     placeholder="Name..."
+    //     value={registerName}
+    //     onChange={(event) => setRegisterName(event.target.value)}
+    //   />
+    //   <input
+    //     id="RrgEmail"
+    //     placeholder="Email..."
+    //     value={registerEmail}
+    //     onChange={(event) => setRegisterEmail(event.target.value)}
+    //   />
+    //   <input
+    //     id="RrgPassword"
+    //     placeholder="Password..."
+    //     type="password"
+    //     value={registerPassword}
+    //     onChange={(event) => setRegisterPassword(event.target.value)}
+    //   />
+    //   <button onClick={register}> Create User</button>
+    //   <GoogleButton onClick={handleGoogleSignUp} />
+    //   <div className="links">
         
-        <Link to="/Login">
+    //     <Link to="/Login">
+    //     <p>You already have an account</p>
+    //     </Link>
+    //   </div>
+    // </div>
+    <div className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg">
+    <h3 className="text-3xl font-bold mb-8 text-center">Register User</h3>
+    <input
+      id="RrgName"
+      type="text"
+      placeholder="Name..."
+      value={registerName}
+      onChange={(event) => setRegisterName(event.target.value)}
+      className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <input
+      id="RrgEmail"
+      type="email"
+      placeholder="Email..."
+      value={registerEmail}
+      onChange={(event) => setRegisterEmail(event.target.value)}
+      className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <input
+      id="RrgPassword"
+      type="password"
+      placeholder="Password..."
+      value={registerPassword}
+      onChange={(event) => setRegisterPassword(event.target.value)}
+      className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button
+      onClick={register}
+      className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+    >
+      Create User
+    </button>
+    <GoogleButton onClick={handleGoogleSignUp} />
+    <div className="mt-4 text-center">
+      <Link to="/Login" className="text-blue-500 hover:underline">
         <p>You already have an account</p>
-        </Link>
-      </div>
+      </Link>
     </div>
+  </div>
   );
 };
 
