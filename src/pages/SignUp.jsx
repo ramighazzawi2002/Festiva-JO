@@ -23,9 +23,16 @@ const SignUp = () => {
         registerEmail,
         registerPassword
       );
+     const customersData = await axios.get("https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
 
-      await axios.post(
-        "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json",
+
+      )
+      console.log(customersData.data);
+
+      await axios.put(
+        `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${customersData.data.length}.json`,
+
+     
         {
           active: true,
           email: registerEmail,
@@ -36,7 +43,7 @@ const SignUp = () => {
         }
       );
 
-      sessionStorage.setItem("register", JSON.stringify(registerEmail));
+      sessionStorage.setItem("register",customersData.data.length);
 
       console.log("User successfully registered:", userCredential.user);
     } catch (error) {
@@ -49,8 +56,23 @@ const SignUp = () => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+      const customersData = await axios.get("https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
 
-      sessionStorage.setItem("register", JSON.stringify(user.email)); // حفظ عنوان البريد الإلكتروني بال session storage
+      )
+      console.log(customersData.data);
+
+      await axios.put(
+        `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${customersData.data.length}.json`,
+        {
+          active: true,
+          email: user.email,
+          isDeleted: false,
+          name: user.displayName,
+          role: "Customer"
+        }
+      );
+    
+      sessionStorage.setItem("register",customersData.data.length);
 
       console.log("User signed in with Google:", user);
     } catch (error) {
