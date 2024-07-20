@@ -88,9 +88,7 @@ const CheckOut = () => {
     });
     navigate("/Booking");
   };
-    
-  };
-
+  
 
   function applyCoupon() {
     if(couponApplied) {
@@ -130,23 +128,6 @@ const CheckOut = () => {
     <div className="py-12 mt-20">
     <SuccessAlert message="Coupon code applied successfully" show={showSuccessAlert} />
     <ErrorAlert error={errorMessages} show={showErrorAlert} />
-
-    // تخزين معلومات الحجز في sessionStorage
-//     sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
-//     sessionStorage.setItem("paymentMethod", paymentMethod);
-//     sessionStorage.setItem("cardInfo", JSON.stringify(cardInfo));
-//     sessionStorage.setItem("couponCode", couponCode);
-
-//     console.log("Checkout submitted", {
-//       paymentMethod,
-//       couponCode,
-//       cardInfo,
-//       orderDetails,
-//     });
-//     navigate("/Booking");
-//   };
-
-  return (
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="md:flex">
@@ -262,6 +243,5 @@ const CheckOut = () => {
     </div>
   );
 };
-
 export default CheckOut;
 
