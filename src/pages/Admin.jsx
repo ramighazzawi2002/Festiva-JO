@@ -25,6 +25,7 @@ import getData from "../hooks/getData";
 import axios from "axios";
 import deletePostData from "../hooks/deleteData";
 import updatePostData from "../hooks/updateData";
+import Switch from "../components/Switch";
 // Mock data
 const salesData = [
   { name: "Jan", sales: 4000 },
@@ -72,13 +73,13 @@ const mockCustomers = [
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [events] = getData(
-    "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/events.json"
+    "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/events.json"
   );
   const [messages, setMessage] = getData(
-    "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/messages.json"
+    "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/messages.json"
   );
   let [customers] = getData(
-    "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
+    "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
   );
   const [newEventName, setNewEventName] = useState("");
   const [newEventDate, setNewEventDate] = useState("");
@@ -100,7 +101,7 @@ const Admin = () => {
     };
     try {
       const response = await axios.post(
-        "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/events.json",
+        "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/events.json",
         newEvent
       );
       if (response.status === 200) {
@@ -115,7 +116,7 @@ const Admin = () => {
   const [data, postData] = updatePostData();
 
   const activeToggle = (id, status) => {
-    const url = `https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
+    const url = `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
 
     if (status) {
       postData(url, { active: false });
@@ -125,7 +126,7 @@ const Admin = () => {
   };
   // const [deleteData, deleteDataFun] = deletePostData();
   //   const handleDeleteEvent = id => {
-  //     const url = `https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
+  //     const url = `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
   //     deleteDataFun(url);
   //   };
 
@@ -310,7 +311,7 @@ const Admin = () => {
                         onClick={() =>
                           handleDeleteEvent(
                             event.key,
-                            `https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/events/`
+                            `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/events/`
                           )
                         }
                         className="text-red-500"
@@ -357,12 +358,12 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredCustomers.map((customer) => (
+                {filteredCustomers.map((customer, index) => (
                   <tr key={customer.id} className="border-b">
                     <td className="p-2">{customer.name}</td>
                     <td className="p-2">{customer.email}</td>
                     <td className="p-2">{customer.totalPurchases}</td>
-                    <td className="p-2 grid grid-cols-[50px_20px_50px] gap-6">
+                    <td className="p-2 grid grid-cols-[30px_40px_50px] gap-6">
                       <h1
                         className={`${
                           customer.active ? "text-green-500" : "text-red-500"
@@ -370,13 +371,10 @@ const Admin = () => {
                       >
                         {customer.active ? "Active" : "Inactive"}
                       </h1>
-                      <button className="mr-2 text-blue-500">
-                        <Edit
-                          size={18}
-                          onClick={() =>
+                      <button className="mr-4 text-blue-500">
+                        <Switch id={index} checked={customer.active} onClick={() =>
                             activeToggle(customer.key, customer.active)
-                          }
-                        />
+                          }/>
                       </button>
                       <button className="text-red-500">
                         <Trash2
@@ -384,7 +382,7 @@ const Admin = () => {
                           onClick={() =>
                             handleDeleteEvent(
                               customer.key,
-                              "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers"
+                              "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers"
                             )
                           }
                         />

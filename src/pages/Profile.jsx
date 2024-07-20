@@ -11,7 +11,7 @@ const Profile = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
+          "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
         );
         const data = response.data;
         if (data && data[userId]) {
@@ -40,7 +40,7 @@ const Profile = () => {
   //             const uploadResponse = await axios.post('YOUR_IMAGE_UPLOAD_URL', formData);
   //             const imageUrl = uploadResponse.data.url;
 
-  //             await axios.put(`https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`, { profileImage: imageUrl });
+  //             await axios.put(`https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`, { profileImage: imageUrl });
 
   //             setProfileImage(imageUrl);
   //         } catch (error) {
@@ -53,13 +53,13 @@ const Profile = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`
+        `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`
       );
       const currentUserData = response.data;
       const updatedUser = { ...currentUserData, name, email, profileImage };
 
       await axios.put(
-        `https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`,
+        `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userId}.json`,
         updatedUser
       );
       alert("Profile updated successfully💜!");
