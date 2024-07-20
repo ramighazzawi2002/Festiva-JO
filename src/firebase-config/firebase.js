@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signOut, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAqDcdAXngwHEhTRcXlp4WdMeRPV9onBuY",
-    authDomain: "culture-festival-f4fd7.firebaseapp.com",
-    databaseURL: "https://culture-festival-f4fd7-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "culture-festival-f4fd7",
-    storageBucket: "culture-festival-f4fd7.appspot.com",
-    messagingSenderId: "103428832458",
-    appId: "1:103428832458:web:4ab8a261568337e0890833"
+    apiKey: "AIzaSyCBIbxnMfI9HYmcEJXLgoActJOPFuKvI_I",
+    authDomain: "culture-festival-new.firebaseapp.com",
+    databaseURL: "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "culture-festival-new",
+    storageBucket: "culture-festival-new.appspot.com",
+    messagingSenderId: "570329409284",
+    appId: "1:570329409284:web:b0208562270d9361231251"
   };
 
   const app = initializeApp(firebaseConfig);
