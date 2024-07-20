@@ -25,11 +25,14 @@ const SignUp = () => {
       );
      const customersData = await axios.get("https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
 
+
       )
       console.log(customersData.data);
 
       await axios.put(
         `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${customersData.data.length}.json`,
+
+     
         {
           active: true,
           email: registerEmail,

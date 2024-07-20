@@ -1,4 +1,3 @@
-
 // import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 // import { NavLink } from "react-router-dom";
@@ -75,7 +74,7 @@ function NavBar() {
       </div>
       <ul className={`navbar-list ${menuOpen ? "open" : ""}`}>
         <li>
-          <NavLink to="/Admin" ClassName="active" exact>
+          <NavLink to="/" ClassName="active" exact>
             Home
           </NavLink>
         </li>
@@ -120,4 +119,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
