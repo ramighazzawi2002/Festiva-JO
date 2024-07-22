@@ -21,7 +21,6 @@ import {
   Trash2,
 } from "lucide-react";
 import getData from "../hooks/getData";
-//  import usePostData from "../hooks/postData";
 import axios from "axios";
 import deletePostData from "../hooks/deleteData";
 import updatePostData from "../hooks/updateData";
@@ -73,22 +72,24 @@ const mockCustomers = [
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [events] = getData(
-    "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/events.json"
+    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events.json"
   );
   const [messages, setMessage] = getData(
-    "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/messages.json"
+    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/messages.json"
   );
   let [customers] = getData(
-    "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
+    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
   );
   const [newEventName, setNewEventName] = useState("");
+  const [id, setId] = useState("");
+
   const [newEventDate, setNewEventDate] = useState("");
-  const [newEvent, setNewEvent] = useState("");
+  const [newEventdescription, setNewEventdescription] = useState("");
   const [newEventTickets, setNewEventTickets] = useState("");
+  const [newImage, setNewImage] = useState("");
   const [showAddEventForm, setShowAddEventForm] = useState(false);
+  const [showUpdateEventForm, setshowUpdateEventForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
-
 
   const handleAddEvent = async e => {
     e.preventDefault();
@@ -96,12 +97,14 @@ const Admin = () => {
       id: events.length + 1,
       title: newEventName,
       date: newEventDate,
+      description: newEventdescription,
+      image: newImage,
       ticketsAvailable: parseInt(newEventTickets),
       isDeleted: false,
     };
     try {
       const response = await axios.post(
-        "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/events.json",
+        "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events.json",
         newEvent
       );
       if (response.status === 200) {
@@ -111,12 +114,39 @@ const Admin = () => {
       alert(`Error: ${error.message}`);
     }
     console.log(newEvent.name);
+    console.log(newEvent.ticketsAvailable);
   };
 
   const [data, postData] = updatePostData();
+  const [updateData, updateEvent] = updatePostData();
+
+  const showUpdateForm = id => {
+   
+    setshowUpdateEventForm(!showUpdateEventForm);
+    setId(id);
+    console.log(showUpdateEventForm);
+  
+
+  };
+
+  const handleUpdate = (id, url, e) => {
+    e.preventDefault();
+    const upEvent = {
+      id: id,
+      title: newEventName,
+      date: newEventDate,
+      description: newEventdescription,
+      ticketsAvailable: parseInt(newEventTickets),
+      isDeleted: false,
+      image: newImage,
+    };
+    const urlVar = `${url}/${id}.json`;
+
+    updateEvent(urlVar, upEvent);
+  };
 
   const activeToggle = (id, status) => {
-    const url = `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
+    const url = `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
 
     if (status) {
       postData(url, { active: false });
@@ -124,22 +154,17 @@ const Admin = () => {
       postData(url, { active: true });
     }
   };
-  // const [deleteData, deleteDataFun] = deletePostData();
-  //   const handleDeleteEvent = id => {
-  //     const url = `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
-  //     deleteDataFun(url);
-  //   };
+
 
   const [deleteData, deleteDataFun] = deletePostData();
 
   const handleDeleteEvent = (id, url) => {
     const urlVar = `${url}/${id}.json`;
     deleteDataFun(urlVar);
-
   };
 
   const filteredCustomers = customers.filter(
-    (customer) =>
+    customer =>
       customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       customer.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -252,22 +277,38 @@ const Admin = () => {
                     type="text"
                     placeholder="Event Name"
                     value={newEventName}
-                    onChange={(e) => setNewEventName(e.target.value)}
+                    onChange={e => setNewEventName(e.target.value)}
                     className="border p-2 rounded"
                     required
                   />
                   <input
                     type="date"
                     value={newEventDate}
-                    onChange={(e) => setNewEventDate(e.target.value)}
+                    onChange={e => setNewEventDate(e.target.value)}
                     className="border p-2 rounded"
                     required
                   />
                   <input
                     type="number"
                     placeholder="Available Tickets"
-                    value={newEventTickets}
-                    onChange={(e) => setNewEventTickets(e.target.value)}
+                  
+                    onChange={e => setNewEventTickets(e.target.value)}
+                    className="border p-2 rounded"
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="description"
+                    value={newEventdescription}
+                    onChange={e => setNewEventdescription(e.target.value)}
+                    className="border p-2 rounded"
+                    required
+                  />
+                  <input
+                    type="url"
+                    placeholder="image"
+                    value={newImage}
+                    onChange={e => setNewImage(e.target.value)}
                     className="border p-2 rounded"
                     required
                   />
@@ -281,37 +322,105 @@ const Admin = () => {
               </form>
             )}
 
+            {showUpdateEventForm && (
+              <form
+                onSubmit={e =>
+                  handleUpdate(
+                    id,
+                    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events",
+                    e
+                  )
+                }
+                className="mb-4"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <input
+                    type="text"
+                    placeholder="Event Name"
+                    value={newEventName}
+                    onChange={e => setNewEventName(e.target.value)}
+                    className="border p-2 rounded"
+                    required
+                  />
+                  <input
+                    type="date"
+                    value={newEventDate}
+                    onChange={e => setNewEventDate(e.target.value)}
+                    className="border p-2 rounded"
+                    required
+                  />
+                  <input
+                    type="number"
+                    placeholder="Available Tickets"
+                    value={newEventTickets}
+                    onChange={e => setNewEventTickets(e.target.value)}
+                    className="border p-2 rounded"
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="description"
+                    value={newEventdescription}
+                    onChange={e => setNewEventdescription(e.target.value)}
+                    className="border p-2 rounded"
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="image url"
+                    value={newImage}
+                    onChange={e => setNewImage(e.target.value)}
+                    className="border p-2 rounded"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                  Update Event
+                </button>
+              </form>
+            )}
+
             <table className="w-full">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="p-2 text-left">Event Name</th>
-                  <th className="p-2 text-left">Date</th>
-                  <th className="p-2 text-left">Available Tickets</th>
-                  <th className="p-2 text-left">Actions</th>
+                  <th className="p-2 text-left  w-20">Event Name</th>
+                  <th className="p-2 text-left  w-20">Date</th>
+                  <th className=" p-2 text-left w-20">description</th>
+                  <th className="p-2 text-left  w-20">Event image</th>
+                  <th className="p-2 text-left  w-20">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {events.map((event) => (
+                {events.map(event => (
                   <tr key={event.id} className="border-b">
                     <td className="p-2">{event.title}</td>
                     <td className="p-2">{event.date}</td>
-                    <td className="p-2">
-                      {event.tickets
-                        ? event.tickets[Object.keys(event.tickets)[0]]
-                            .availability +
-                          event.tickets[Object.keys(event.tickets)[1]]
-                            .availability
-                        : null}
+                    <td className="p-2">{event.description}</td>
+
+                    <td>
+                      <img
+                        src={event.image}
+                        style={{ width: "100px", height: "auto" }}
+                      />
                     </td>
                     <td className="p-2">
                       <button className="mr-2 text-blue-500">
-                        <Edit size={18} />
+                        <Edit
+                          size={18}
+                          onClick={() =>
+                          
+                            showUpdateForm(event.key)
+                          }
+                        />
                       </button>
                       <button
                         onClick={() =>
                           handleDeleteEvent(
                             event.key,
-                            `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/events/`
+                            `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events/`
                           )
                         }
                         className="text-red-500"
@@ -339,7 +448,7 @@ const Admin = () => {
                   type="text"
                   placeholder="Search customers..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={e => setSearchTerm(e.target.value)}
                   className="w-full border p-2 pl-10 rounded"
                 />
                 <Search
@@ -372,9 +481,13 @@ const Admin = () => {
                         {customer.active ? "Active" : "Inactive"}
                       </h1>
                       <button className="mr-4 text-blue-500">
-                        <Switch id={index} checked={customer.active} onClick={() =>
+                        <Switch
+                          id={index}
+                          checked={customer.active}
+                          onClick={() =>
                             activeToggle(customer.key, customer.active)
-                          }/>
+                          }
+                        />
                       </button>
                       <button className="text-red-500">
                         <Trash2
@@ -382,7 +495,7 @@ const Admin = () => {
                           onClick={() =>
                             handleDeleteEvent(
                               customer.key,
-                              "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers"
+                              "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers"
                             )
                           }
                         />
@@ -399,18 +512,9 @@ const Admin = () => {
           <div>
             <h2 className="text-xl font-semibold mb-4">Message</h2>
             <div className="flex items-center mb-4">
-              <Package className="mr-2" />
-              <span>
-                Total Available Tickets:{" "}
-                {events.reduce((sum, event) => sum + event.ticketsAvailable, 0)}
-              </span>
+            
             </div>
-            {/* <Alert>
-              <AlertDescription>
-                Low ticket alert: "Tech Conference 2024" has less than 500
-                tickets available.
-              </AlertDescription>
-            </Alert> */}
+        
             <table className="w-full mt-4">
               <thead>
                 <tr className="bg-gray-100">
@@ -421,11 +525,12 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-
                 {messages.map(message => (
                   <tr key={message.id} className="border-b">
                     <td className="p-2">{message.name}</td>
-                    <td className="p-2">{message.email}</td>
+                    <td className="p-2">
+                      <a href={"mailto:" + message.email}>{message.email}</a>
+                    </td>
                     <td className="p-2">{message.message}</td>
                   </tr>
                 ))}

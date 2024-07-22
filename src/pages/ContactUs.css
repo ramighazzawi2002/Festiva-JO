@@ -1,23 +1,23 @@
-
 .cont {
-    
-    background: url('./1.svg') no-repeat top left;
-    background-size: auto; 
+
+    background: url('../assets/img/s19.svg') no-repeat top left;
+
+    background-size:contain;
 }
 
 
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{
+  margin-top: 0px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+
 
 .cont {
     min-height: 100vh;
-    
+    margin-top: 88px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,11 +36,10 @@
 }
 
 .cont form h1 {
-    color: #FF1E00;
-    font-weight: 500;
+    color:#704638;
     margin-top: 20px;
-    width: 500px;
     text-align: center;
+    font-size:xx-large;
 }
 
 .cont form input {
@@ -91,7 +90,7 @@ textarea::-webkit-scrollbar-thumb {
 
 .cont form #button {
     border: none;
-    background: #e74848;
+    background:#704638;
     border-radius: 5px;
     margin-top: 20px;
     font-weight: 600;
@@ -107,20 +106,3 @@ textarea::-webkit-scrollbar-thumb {
 .cont form #button:hover {
     opacity: 0.7;
 }
-/* 
-.top-left {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-} */
-
-/* .bottom-right {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-} */
-
-/* img {
-    width: 100px;
-    height: auto;
-} */

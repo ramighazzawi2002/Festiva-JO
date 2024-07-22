@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
 const CARD_OPTIONS = {
   iconStyle: "solid",
   style: {
@@ -59,6 +60,8 @@ export default function Payment() {
 
   return (
     <>
+    
+   
       {!success ? (
         <form onSubmit={handleSubmit} className="w-full max-w-2xl p-6 bg-white  rounded ">
           <fieldset className="mb-4">
@@ -75,6 +78,7 @@ export default function Payment() {
           <h2 className="text-2xl font-bold">Payment Successful</h2>
         </div>
       )}
+    
     </>
   );
 }

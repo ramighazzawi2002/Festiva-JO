@@ -1,196 +1,18 @@
 
-// import { auth } from "../firebase-config/firebase";
-// import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-// import { useEffect, useState } from "react";
-// import axios from 'axios';
-// import { Link } from "react-router-dom";
-
-// const LogIn = () => {
-//   const [loginEmail, setLoginEmail] = useState("");
-//   const [loginPassword, setLoginPassword] = useState("");
-
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//       // Update user state based on authentication state
-//       setUser(currentUser);
-//     });
-
-//     return unsubscribe;
-//   }, []);
-
-//   const login = async () => {
-//     try {
-//       const userCredential = await signInWithEmailAndPassword(
-//         auth,
-//         loginEmail,
-//         loginPassword
-//       );
-//       const ddd = await axios.get(
-//         `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${customersData.data.length}/email.json`
-//       );
-//       if (ddd.data == loginEmail ) {
-//         // const filteredBooks = Object.keys(response.data)
-//         //   .filter((key) => !response.data[key].isDeleted)
-//         //   .reduce((obj, key) => {
-//         //     obj[key] = response.data[key];
-//             let x= sessionStorage.setItem('loginEmail', JSON.stringify(customersData.data.length));
-
-//             return x;
-//           }, 
-//         // setBooks(filteredBooks);
-//       } else {
-//         console.log("No data available");
-//       }
-    
-//       // Clear input fields after successful login
-//       setLoginEmail("");
-//       setLoginPassword("");
-
-//       // Store loginEmail in sessionStorage
-//     //   sessionStorage.setItem('loginEmail', JSON.stringify(customersData.data.length));
-
-//       console.log("User successfully logged in:", userCredential.user);
-//     } catch (error) {
-//       alert("Incorrect email or password. Please try again."); // Display error message
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h3> Login </h3>
-//       <input
-//         id="LogEmail"
-//         placeholder="Email..."
-//         value={loginEmail}
-//         onChange={(event) => setLoginEmail(event.target.value)}
-//       />
-//       <input
-//         id="LogPass"
-//         type="password"
-//         placeholder="Password..."
-//         value={loginPassword}
-//         onChange={(event) => setLoginPassword(event.target.value)}
-//       />
-
-//       <button onClick={login}> Login</button>
-
-//       <div className="links">
-//         <Link to="/SignUp">
-//           <p>Don't have an account yet?</p>
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LogIn;
 
 
 
-
-// import { auth } from "../firebase-config/firebase";
-// import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-// import { useEffect, useState } from "react";
-// import axios from 'axios';
-// import { Link } from "react-router-dom";
-
-// const LogIn = () => {
-//   const [loginEmail, setLoginEmail] = useState("");
-//   const [loginPassword, setLoginPassword] = useState("");
-
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//       // You may want to update your user state here if needed
-//     });
-
-//     return unsubscribe;
-//   }, []);
-
-//   const login = async () => {
-//     try {
-//       // Sign in user with email and password
-//       const userCredential = await signInWithEmailAndPassword(
-//         auth,
-//         loginEmail,
-//         loginPassword
-//       );
-
-//       // Fetch customer data based on loginEmail
-//       const customersData = await axios.get(
-//         `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json`
-//       );
-
-//       // Check if loginEmail exists in customersData
-//       let foundEmail = false;
-//       let customerId = null;
-//       for (const key in customersData.data) {
-//         if (customersData.data[key].email === loginEmail) {
-//           foundEmail = true;
-//           customerId = key;
-//           break;
-//         }
-//       }
-
-//       if (foundEmail) {
-//         // Store customer ID in sessionStorage
-//         sessionStorage.setItem('customerId', customerId);
-//         console.log("Customer ID stored in sessionStorage:", customerId);
-//       } else {
-//         console.log("No customer found with this email:", loginEmail);
-//       }
-
-//       // Clear input fields after successful login
-//       setLoginEmail("");
-//       setLoginPassword("");
-
-//       console.log("User successfully logged in:", userCredential.user);
-//     } catch (error) {
-//       alert("Incorrect email or password. Please try again."); // Display error message
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h3> Login </h3>
-//       <input
-//         id="LogEmail"
-//         placeholder="Email..."
-//         value={loginEmail}
-//         onChange={(event) => setLoginEmail(event.target.value)}
-//       />
-//       <input
-//         id="LogPass"
-//         type="password"
-//         placeholder="Password..."
-//         value={loginPassword}
-//         onChange={(event) => setLoginPassword(event.target.value)}
-//       />
-
-//       <button onClick={login}> Login</button>
-
-//       <div className="links">
-//         <Link to="/SignUp">
-//           <p>Don't have an account yet?</p>
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LogIn;
-
-
-
-
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase-config/firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { useEffect, useState } from "react";
-import axios from 'axios';
-import { Link } from "react-router-dom";
 
 const LogIn = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -200,7 +22,24 @@ const LogIn = () => {
     return unsubscribe;
   }, []);
 
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const login = async () => {
+    setError("");
+
+    if (!validateEmail(loginEmail)) {
+      setError("Invalid email format");
+      return;
+    }
+
+    if (loginPassword.length < 8) {
+      setError("Password must be at least 8 characters long");
+      return;
+    }
+
     try {
       // Sign in user with email and password
       const userCredential = await signInWithEmailAndPassword(
@@ -211,74 +50,60 @@ const LogIn = () => {
 
       // Fetch customer data based on loginEmail
       const customersData = await axios.get(
-        `https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json`
+        `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json`
       );
 
-      // Check if loginEmail exists and account is not marked as deleted
+      // Check if loginEmail exists and account is not marked as deleted or inactive
       let foundEmail = false;
       let isDeleted = false;
+      let active = true;
       let customerId = null;
 
       for (const key in customersData.data) {
         if (customersData.data[key].email === loginEmail) {
           foundEmail = true;
           isDeleted = customersData.data[key].isDeleted || false; // Default to false if isDeleted is not defined
+          active = customersData.data[key].active;
           customerId = key;
-
           break;
         }
       }
 
       if (!foundEmail) {
-        alert("No customer found with this email."); // Alert if no customer found
+        setError("No customer found with this email.");
         return;
       }
 
       if (isDeleted) {
-        alert("You can't enter. Your account is deleted."); // Alert if account is marked as deleted
+        setError("You can't enter. Your account is deleted.");
         return;
       }
 
-      // Store customer ID in sessionStorage if account is not deleted
-      sessionStorage.setItem('registor', customerId); // Change to store customer ID or any other relevant data
+      if (!active) {
+        setError("You can't enter. Your account is inactive.");
+        return;
+      }
+
+      // Store customer ID in sessionStorage if account is not deleted or inactive
+      sessionStorage.setItem("customerId", customerId);
 
       // Clear input fields after successful login
       setLoginEmail("");
       setLoginPassword("");
 
       console.log("User successfully logged in:", userCredential.user);
+
+      // Redirect to home page
+      navigate("/");
     } catch (error) {
-      alert("Incorrect email or password. Please try again."); // Display error message
+      setError("Incorrect email or password. Please try again.");
     }
   };
 
   return (
-    // <div>
-    //   <h3> Login </h3>
-    //   <input
-    //     id="LogEmail"
-    //     placeholder="Email..."
-    //     value={loginEmail}
-    //     onChange={(event) => setLoginEmail(event.target.value)}
-    //   />
-    //   <input
-    //     id="LogPass"
-    //     type="password"
-    //     placeholder="Password..."
-    //     value={loginPassword}
-    //     onChange={(event) => setLoginPassword(event.target.value)}
-    //   />
-
-    //   <button onClick={login}> Login</button>
-
-    //   <div className="links">
-    //     <Link to="/SignUp">
-    //       <p>Don't have an account yet?</p>
-    //     </Link>
-    //   </div>
-    // </div>
-    <div className="max-w-sm mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div className="max-w-sm mx-auto p-6 bg-white shadow-md rounded-lg mt-48">
       <h3 className="text-2xl font-semibold mb-6 text-center">Login</h3>
+      {error && <div className="text-red-500 mb-4">{error}</div>}
       <input
         id="LogEmail"
         type="email"
@@ -297,7 +122,7 @@ const LogIn = () => {
       />
       <button
         onClick={login}
-        className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full py-2 bg-red1 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         Login
       </button>

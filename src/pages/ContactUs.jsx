@@ -1,41 +1,11 @@
 
 
-// export default function ContactUs(){
-//     return(
-//         <>
-//         <h1>Contact Us</h1>
-//         </>
-//     );
-// }
-// import './ContactUs.css';
-
-// const ContactUs = () => {
-//   return (
-//     <div className="cont">
-//       <form>
-//         <h1 style={{ paddingBottom: '30px' }}>Contact Us </h1>
-//         <input type="text" id="firstName" placeholder="Name" required />
-//         <input type="email" id="email" placeholder="Email" required />
-//         <h4>Type Your Message Here...</h4>
-//         <textarea required></textarea>
-//         <input type="submit" value="Send" id="button" />
-//       </form>
-
-      
-//     </div>
-
-    
-//   );
-// };
-
-// export default ContactUs;
-
-
 import { useState } from 'react';
 import './ContactUs.css'; // استيراد CSS الخاص بالصفحة
-import { db } from './Firebase'; // تأكد من استيراد Firebase من المسار الصحيح
+import { db } from '../firebase-config/firebase';
 import { ref, push, set } from 'firebase/database';
-
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer';
 const ContactUs = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -60,7 +30,7 @@ const ContactUs = () => {
 
       setStatus('Message sent successfully');
     } catch (error) {
-      setStatus(`Error: ${error.message}`);
+      setStatus(`Error:${error.message}`);
     }
 
     // Reset form fields
@@ -70,9 +40,11 @@ const ContactUs = () => {
   };
 
   return (
+    <>
+    <NavBar/>
     <div className="cont">
       <form onSubmit={handleSubmit}>
-        <h1 style={{ paddingBottom: '30px' }}>Contact Us</h1>
+        <h1 >Contact Us</h1>
         <input
           type="text"
           id="firstName"
@@ -98,10 +70,11 @@ const ContactUs = () => {
         <input type="submit" value="Send" id="button" />
         {status && <p>{status}</p>}
       </form>
-    
+
     </div>
+    <Footer/>
+    </>
   );
 };
 
 export default ContactUs;
-

@@ -1,8 +1,38 @@
-# React + Vite
+# Festiva JO
+Festiva JO is a platform designed to provide an organized and accessible way for users to discover and purchase tickets for various festivals in Jordan. It aims to bring the vibrant festival culture of Jordan 
+closer to everyone.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+- **Comprehensive Event Listings:** Access to a wide range of festivals across Jordan.
+- **User-Friendly Interface:** Easy navigation and categorization of events.
+- **Category Browsing:** Explore festivals by different categories such as music, food, culture, and more.
+- **Search:** Ability to search for festivals.
+- **Ticket Purchase:** Ability to buy tickets for festivals on-site.
+- **Event Details:** Comprehensive details about each festival, including dates, locations, and line-ups.
+- **PayPal Booking:** Secure and convenient ticket booking through PayPal.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Team
+
+- **Areej Abu Muhfouz** - Scrum Master, Web Developer
+- **Rafah shraim** - Product Owner, Web Developer
+- **Malek Shehadeh** - Quality Assurance, Web Developer
+- **Forat Thalji** - Web Developer
+- **Duaa Khamis** - Web Developer
+- **Rami Ghazzawi** - Web Developer
+
+## Tools Used
+
+- **Trello**
+- **HTML**
+- **CSS**
+- **React JS**
+- **Firebase**
+- **Tailwind**
+
+## Live Demos
+
+- [Live Demo 1](#)
+- [Figma Demo](https://www.figma.com/community/tag/ticket/files)
+- [Trello Board](https://trello.com/b/W5oxzlAS/culture-of-jordan)
+
