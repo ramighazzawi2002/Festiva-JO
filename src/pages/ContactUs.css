@@ -28,7 +28,7 @@
     height: 400px;
     display: flex;
     justify-content: center;
-    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    /* box-shadow: 20px 20px 50px rgba(0,0,0,0.5); */
     border-radius: 15px;
     background: #6239391a;
     backdrop-filter: blur(10px);
@@ -36,7 +36,7 @@
 }
 
 .cont form h1 {
-    color:#704638;
+    color:tomato;
     margin-top: 20px;
     text-align: center;
     font-size:xx-large;
@@ -90,7 +90,7 @@ textarea::-webkit-scrollbar-thumb {
 
 .cont form #button {
     border: none;
-    background:#704638;
+    background:tomato;
     border-radius: 5px;
     margin-top: 20px;
     font-weight: 600;

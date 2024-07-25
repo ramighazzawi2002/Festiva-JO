@@ -9,13 +9,10 @@ import Profile from "./pages/Profile";
 import Catalog from "./pages/Catalog";
 import Admin from "./pages/Admin";
 import Details from "./pages/Details";
-// import Footer from "./components/Footer";
-// import NavBar from "./components/NavBar";
-// import { useState } from "react";
 import CheckOut from "./pages/checkout";
 import BookingConfirmed from "./pages/Booking";
 import LogInAdmin from "./pages/LoginAdmin";
-
+import ResetPassword from "./pages/ResetPassword";
 function App() {
  
   return (
@@ -36,6 +33,7 @@ function App() {
           <Route path="checkout" element={<CheckOut />} />
           <Route path="LogInAdmin" element={<LogInAdmin/>} />
           <Route path="/details/:eventId" element={<Details />} />
+          <Route path="ResetPassword" element={<ResetPassword/>} />
         </Routes>
       </BrowserRouter>
     </>
