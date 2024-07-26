@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   BarChart,
@@ -20,7 +19,7 @@ import {
   Search,
   Edit,
   Trash2,
-  Reply
+  Reply,
 } from "lucide-react";
 import getData from "../hooks/getData";
 import axios from "axios";
@@ -28,7 +27,6 @@ import deletePostData from "../hooks/deleteData";
 import updatePostData from "../hooks/updateData";
 import Switch from "../components/Switch";
 import ImageUpload from "../components/imageUpload";
-
 
 const mockEvents = [
   {
@@ -186,7 +184,9 @@ const Admin = () => {
         <button
           onClick={() => setActiveTab("overview")}
           className={`mr-4 px-4 py-2 rounded ${
-            activeTab === "overview" ? "bg-red1 hover:bg-red2 text-white " : "bg-gray-200"
+            activeTab === "overview"
+              ? "bg-red1 hover:bg-red2 text-white "
+              : "bg-gray-200"
           }`}
         >
           Overview
@@ -194,7 +194,9 @@ const Admin = () => {
         <button
           onClick={() => setActiveTab("events")}
           className={`mr-4 px-4 py-2 rounded ${
-            activeTab === "events" ? "bg-red1 hover:bg-red2 text-white" : "bg-gray-200"
+            activeTab === "events"
+              ? "bg-red1 hover:bg-red2 text-white"
+              : "bg-gray-200"
           }`}
         >
           Event Management
@@ -202,15 +204,19 @@ const Admin = () => {
         <button
           onClick={() => setActiveTab("customers")}
           className={`mr-4 px-4 py-2 rounded ${
-            activeTab === "customers" ? "bg-red1 hover:bg-red2 text-white" : "bg-gray-200"
+            activeTab === "customers"
+              ? "bg-red1 hover:bg-red2 text-white"
+              : "bg-gray-200"
           }`}
         >
-          Customer Management
+          Users Management
         </button>
         <button
           onClick={() => setActiveTab("inventory")}
           className={`px-4 py-2 rounded ${
-            activeTab === "inventory" ? "bg-red1 hover:bg-red2 text-white" : "bg-gray-200"
+            activeTab === "inventory"
+              ? "bg-red1 hover:bg-red2 text-white"
+              : "bg-gray-200"
           }`}
         >
           Messages
@@ -228,7 +234,7 @@ const Admin = () => {
                 <p className="text-2xl">$250</p>
               </div>
               <div className="bg-page1 p-4 rounded text-white">
-                <h3 className="font-semibold">Active Customers</h3>
+                <h3 className="font-semibold">Active users</h3>
                 <p className="text-2xl">{activeCustomers.length}</p>
               </div>
               <div className="bg-red1 p-4 rounded">
@@ -251,7 +257,7 @@ const Admin = () => {
                 </ResponsiveContainer>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Customer Activity</h3>
+                <h3 className="font-semibold mb-2">Users Activity</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={customerActivityData}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -267,14 +273,13 @@ const Admin = () => {
           </div>
         )}
 
-{activeTab === "events" && (
+        {activeTab === "events" && (
           <div>
             <h2 className="text-xl font-semibold mb-4">Event Management</h2>
             <button
               onClick={() => setShowAddEventForm(!showAddEventForm)}
               className="bg-green-500 text-white px-4 py-2 rounded flex items-center mb-4"
             >
-              
               {showAddEventForm ? "Cancel" : "Add New Event"}
             </button>
 
@@ -299,7 +304,6 @@ const Admin = () => {
                   <input
                     type="number"
                     placeholder="Available Tickets"
-                  
                     onChange={e => setNewEventTickets(e.target.value)}
                     className="border p-2 rounded"
                     required
@@ -312,9 +316,8 @@ const Admin = () => {
                     className="border p-2 rounded"
                     required
                   />
-                 
-                  <ImageUpload  onUpload={setNewImage} />
-                  
+
+                  <ImageUpload onUpload={setNewImage} />
                 </div>
                 <button
                   type="submit"
@@ -398,7 +401,7 @@ const Admin = () => {
               </thead>
               <tbody>
                 {events.map(event => (
-                  <tr key={event.id} className="border-b">
+                  <tr key={event.id} className="border-b even:bg-red2">
                     <td className="p-2">{event.title}</td>
                     <td className="p-2">{event.date}</td>
                     <td className="p-2">{event.description}</td>
@@ -413,10 +416,7 @@ const Admin = () => {
                       <button className="mr-2 text-blue-500">
                         <Edit
                           size={18}
-                          onClick={() =>
-                          
-                            showUpdateForm(event.key)
-                          }
+                          onClick={() => showUpdateForm(event.key)}
                         />
                       </button>
                       <button
@@ -439,16 +439,16 @@ const Admin = () => {
         )}
         {activeTab === "customers" && (
           <div>
-            <h2 className="text-xl font-semibold mb-4">Customer Management</h2>
+            <h2 className="text-xl font-semibold mb-4">Users Management</h2>
             <div className="flex items-center mb-4">
               <Users className="mr-2" />
-              <span>Total Customers: {customers.length}</span>
+              <span>Total users: {customers.length}</span>
             </div>
             <div className="mb-4">
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Search customers..."
+                  placeholder="Search users..."
                   value={searchTerm}
                   onChange={e => setSearchTerm(e.target.value)}
                   className="w-full border p-2 pl-10 rounded"
@@ -464,16 +464,16 @@ const Admin = () => {
                 <tr className="bg-gray-100">
                   <th className="p-2 text-left">Name</th>
                   <th className="p-2 text-left">Email</th>
-                 
+
                   <th className="p-2 text-left">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredCustomers.map((customer, index) => (
-                  <tr key={customer.id} className="border-b">
+                  <tr key={customer.id} className="border-b even:bg-red2">
                     <td className="p-2">{customer.name}</td>
                     <td className="p-2">{customer.email}</td>
-             
+
                     <td className="p-2 grid grid-cols-[30px_40px_50px] gap-6">
                       <h1
                         className={`${
@@ -515,7 +515,7 @@ const Admin = () => {
             <h2 className="text-xl font-semibold mb-4">Message</h2>
             <div className="flex items-center mb-4"></div>
 
-            <table className="w-full mt-4">
+            <table className="w-full mt-4 ">
               <thead>
                 <tr className="bg-gray-100">
                   <th className="p-2 text-left">Name</th>
@@ -526,21 +526,22 @@ const Admin = () => {
               </thead>
               <tbody>
                 {messages.map(message => (
-                                  <tr key={message.id} className="border-b">
-                 <td className="p-2">{message.name}</td>
-                 <td className="p-2">{message.message}</td>
-                 <td>{message.email}</td>
-                 <td className="p-2">
-                   <button
-                     className="bg-blue-800 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
-                   >
-                     <a href={"mailto:" + message.email} className="flex items-center">
-                       Reply
-                       <Reply className="ml-2" /> 
-                     </a>
-                   </button>
-                 </td>
-               </tr>
+                  <tr key={message.id} className="border-b even:bg-red2 ">
+                    <td className="p-2">{message.name}</td>
+                    <td className="p-2">{message.message}</td>
+                    <td>{message.email}</td>
+                    <td className="p-2">
+                      <button className="bg-blue-800 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center">
+                        <a
+                          href={"mailto:" + message.email}
+                          className="flex items-center"
+                        >
+                          Reply
+                          <Reply className="ml-2" />
+                        </a>
+                      </button>
+                    </td>
+                  </tr>
                 ))}
               </tbody>
             </table>
