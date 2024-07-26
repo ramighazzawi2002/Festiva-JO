@@ -77,31 +77,36 @@ const Details = () => {
     }
   };
 
-  const handlePurchase = () => {
-    const ticketOrgPrice = event.tickets[`ticket_id_${ticketOrgId}`].price || 0;
-    const ticketVipPrice = event.tickets[`ticket_id_${ticketVipId}`].price || 0;
-    const total = (ticketOrgPrice * tichOrgCount) + (ticketVipPrice * tichVipCount);
-    setTotalPrice(total);
+  // const handlePurchase = () => {
+  //   const ticketOrgPrice = event.tickets[`ticket_id_${ticketOrgId}`].price || 0;
+  //   const ticketVipPrice = event.tickets[`ticket_id_${ticketVipId}`].price || 0;
+  //   const total = (ticketOrgPrice * tichOrgCount) + (ticketVipPrice * tichVipCount);
+  //   setTotalPrice(total);
 
    
-    sessionStorage.setItem('totalPrice', total);
-    sessionStorage.setItem('orgCount', tichOrgCount);
-    sessionStorage.setItem('vipCount', tichVipCount);
-    sessionStorage.setItem('orgExist', tichOrg);
-    sessionStorage.setItem('vipExist', tichVip);
-    navigate("/checkout");
-  };
-  // const handlePurchase = () => {
-  //   const totalPrice = (event.tickets[`ticket_id_${ticketOrgId}`].price * tichOrgCount) + (event.tickets[`ticket_id_${ticketVipId}`].price * tichVipCount);
-  //   setTotalPrice(totalPrice);
-  //   const user = JSON.parse(sessionStorage.getItem('customerId'))
-  //   sessionStorage.setItem('totalPrice', totalPrice);
+  //   sessionStorage.setItem('totalPrice', total);
   //   sessionStorage.setItem('orgCount', tichOrgCount);
   //   sessionStorage.setItem('vipCount', tichVipCount);
   //   sessionStorage.setItem('orgExist', tichOrg);
   //   sessionStorage.setItem('vipExist', tichVip);
-  //   {use? navigate("/checkout"):navigate("/SignUp")}
-  // }; 
+  //   navigate("/checkout");
+  // };
+  const handlePurchase = () => {
+    const totalPrice = (event.tickets[`ticket_id_${ticketOrgId}`].price * tichOrgCount) + (event.tickets[`ticket_id_${ticketVipId}`].price * tichVipCount);
+    setTotalPrice(totalPrice);
+    const user = JSON.parse(sessionStorage.getItem('customerId'))
+    sessionStorage.setItem('totalPrice', totalPrice);
+    const tPrice = JSON.parse(sessionStorage.getItem('totalPrice'))
+    sessionStorage.setItem('orgCount', tichOrgCount);
+    sessionStorage.setItem('vipCount', tichVipCount);
+    sessionStorage.setItem('orgExist', tichOrg);
+    sessionStorage.setItem('vipExist', tichVip);
+    if (user) {
+      navigate(tPrice > 0 ? "/checkout" : `/Details/${eventId}`);
+    } else {
+      navigate("/SignUp");
+    }
+  }; 
 
   return (
     <div className="bg-gray-100 min-h-screen">
