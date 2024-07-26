@@ -1,6 +1,3 @@
-
-
-
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import NavBar from "../components/NavBar";
@@ -18,7 +15,7 @@
 //     const fetchUserData = async () => {
 //       try {
 //         const response = await axios.get(
-//           `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userIndex}.json`
+//           `https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userIndex}.json`
 //         );
 //         const userData = response.data;
 //         if (userData) {
@@ -34,7 +31,7 @@
 //     const fetchUserTickets = async () => {
 //       try {
 //         const response = await axios.get(
-//           `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/orders.json`
+//           `https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/orders.json`
 //         );
 
 //         const ordersData = response.data;
@@ -42,18 +39,18 @@
 //           const orders = Object.keys(ordersData).map(orderId => {
 //             return { orderId, ...ordersData[orderId] };
 //           });
-       
+
 //           setOrder(orders);
 //               console.log(orders);
-     
+
 //           const customSess=window.sessionStorage.getItem('customerId');
-      
+
 //             if(customSess === order.customer_id){
 //             console.log(order); // Logs orders that match the customerId
 //             }
-        
+
 //       }
-      
+
 //       } catch (error) {
 //         console.error("Error fetching user tickets:", error);
 //       }
@@ -72,7 +69,7 @@
 //     try {
 //       const updatedUser = { name, email };
 //       await axios.put(
-//         `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userIndex}.json`,
+//         `https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${userIndex}.json`,
 //         updatedUser
 //       );
 //       setUser(updatedUser);
@@ -182,8 +179,6 @@
 // };
 
 // export default Profile;
-
-
 
 // // import React, { useState } from "react";
 // // import { Camera } from "lucide-react";
@@ -313,13 +308,6 @@
 // // };
 
 // // export default PersonalProfilePage;
-
-
-
-
-
-
-
 
 // import axios from "axios";
 // import NavBar from "../components/NavBar";
@@ -464,8 +452,6 @@
 
 // export default PersonalProfilePage;
 
-
-
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -483,7 +469,7 @@ const PersonalProfilePage = () => {
   const [email, setEmail] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleProfilePicChange = (e) => {
+  const handleProfilePicChange = e => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -508,7 +494,9 @@ const PersonalProfilePage = () => {
         <div className="flex justify-center">
           <Card className="w-full max-w-lg p-6 shadow-lg ">
             <CardHeader>
-              <h2 className="text-3xl font-bold text-center text-gray-800">Personal Profile</h2>
+              <h2 className="text-3xl font-bold text-center text-gray-800">
+                Personal Profile
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col items-center mb-4">
@@ -545,7 +533,7 @@ const PersonalProfilePage = () => {
                     id="username"
                     type="text"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={e => setUsername(e.target.value)}
                     placeholder="Enter your username"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
@@ -561,7 +549,7 @@ const PersonalProfilePage = () => {
                     id="password"
                     type="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={e => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
@@ -577,7 +565,7 @@ const PersonalProfilePage = () => {
                     id="email"
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />

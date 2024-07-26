@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { CreditCard } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -58,22 +57,23 @@ const CheckOut = () => {
   });
   console.log(sessionStorage.getItem("totalPrice"));
   const [coupons] = getData(
-    "https://culture-festival-new-default-rtdb.europe-west1.firebasedatabase.app/coupons.json"
+    "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/coupons.json"
   );
+  console.log(coupons);
   const [couponApplied, setCouponApplied] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [errorMessages, setErrorMessages] = useState("");
 
-  const handlePaymentMethodChange = (method) => {
+  const handlePaymentMethodChange = method => {
     setPaymentMethod(method);
   };
 
-  const handleCouponCodeChange = (e) => {
+  const handleCouponCodeChange = e => {
     setCouponCode(e.target.value);
   };
 
-  const handleCardInfoChange = (e) => {
+  const handleCardInfoChange = e => {
     setCardInfo({
       ...cardInfo,
 
@@ -81,7 +81,7 @@ const CheckOut = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
     sessionStorage.setItem("paymentMethod", paymentMethod);
@@ -107,9 +107,9 @@ const CheckOut = () => {
       return;
     }
     let couponFound = false;
-// alert("test")
-    coupons.forEach((coupon) => {
-      if ("DISCOUNT10" === couponCode) {
+    // alert("test")
+    coupons.forEach(coupon => {
+      if (coupon.code === couponCode) {
         console.log("Coupon found", coupon);
         couponFound = true;
         orderDetails.total -=
