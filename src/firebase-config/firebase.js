@@ -33,13 +33,12 @@ import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyDAdUWKSdzHps4eBP0xGZ9nA7_mAlxwPSU",
   authDomain: "culture-3.firebaseapp.com",
-  databaseURL:
-    "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "culture-3",
   storageBucket: "culture-3.appspot.com",
   messagingSenderId: "1086111972201",
   appId: "1:1086111972201:web:89f0d5cd4c76656f78dbf8",
-  measurementId: "G-XQ410R5G9N",
+  measurementId: "G-XQ410R5G9N"
 };
 
 let app;

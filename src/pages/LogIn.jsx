@@ -31,7 +31,7 @@ const LogIn = () => {
       return;
     }
 
-    if (loginPassword.length < 8) {
+    if (loginPassword.length < 6) {
       setError("Password must be at least 8 characters long");
       return;
     }
