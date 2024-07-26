@@ -13,12 +13,20 @@ import CheckOut from "./pages/checkout";
 import BookingConfirmed from "./pages/Booking";
 import LogInAdmin from "./pages/LoginAdmin";
 import ResetPassword from "./pages/ResetPassword";
+// import DetailsPage from "./pages/DetailsPage";
+// import festivalData from './festivalData';
+// import festivalData from './festivalData';
+import DetailsPage from "./pages/DetailsPage";
 function App() {
  
   return (
     <>
       <BrowserRouter>
         <Routes>
+        <Route path="/festivals/:id" element={<DetailsPage />} />
+
+        {/* <Route path="/" element={<Home festivalData={festivalData} />} /> */}
+        {/* <Route path="/festivals/:id" element={<DetailsPage festivalData={festivalData} />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="SignUp" element={<SignUp />} />
           <Route path="LogIn" element={<LogIn />} />
