@@ -27,7 +27,7 @@ import axios from "axios";
 import deletePostData from "../hooks/deleteData";
 import updatePostData from "../hooks/updateData";
 import Switch from "../components/Switch";
-import ImageUpload from "../components/imageUpload";
+// import ImageUpload from "../components/imageUpload";
 
 
 const mockEvents = [
