@@ -1,4 +1,3 @@
-
 // import { initializeApp, getApps } from "firebase/app";
 // import { getAuth, signOut, GoogleAuthProvider } from "firebase/auth";
 // import { getDatabase } from "firebase/database";
@@ -29,16 +28,18 @@ import { initializeApp, getApps } from "firebase/app";
 import { getAuth, signOut, GoogleAuthProvider } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-import { getStorage } from 'firebase/storage';
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB4PLaEZMyOg0j0F0Br_4Qk3OUGlydZPZM",
-  authDomain: "culture-2.firebaseapp.com",
-  databaseURL: "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/",
-  projectId: "culture-2",
-  storageBucket: "gs://culture-2.appspot.com",
-  messagingSenderId: "20027048919",
-  appId: "1:20027048919:web:3cf868951998f918728192"
+  apiKey: "AIzaSyDAdUWKSdzHps4eBP0xGZ9nA7_mAlxwPSU",
+  authDomain: "culture-3.firebaseapp.com",
+  databaseURL:
+    "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "culture-3",
+  storageBucket: "culture-3.appspot.com",
+  messagingSenderId: "1086111972201",
+  appId: "1:1086111972201:web:89f0d5cd4c76656f78dbf8",
+  measurementId: "G-XQ410R5G9N",
 };
 
 let app;
@@ -51,5 +52,5 @@ if (!getApps().length) {
 export const db = getDatabase(app);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
-const imageDb = getStorage(app)
-export { signOut, googleProvider, auth, imageDb  };
+const imageDb = getStorage(app);
+export { signOut, googleProvider, auth, imageDb };

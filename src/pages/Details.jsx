@@ -23,7 +23,7 @@ const Details = () => {
 
   const fetchEventDetails = async () => {
     try {
-      const response = await axios.get(`https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events/${eventId}.json`);
+      const response = await axios.get(`https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/events/${eventId}.json`);
       setEvent(response.data);
       setTickOrg(response.data.tickets[`ticket_id_${ticketOrgId}`].availability);
       setTickVip(response.data.tickets[`ticket_id_${ticketVipId}`].availability);

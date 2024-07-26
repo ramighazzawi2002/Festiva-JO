@@ -16,7 +16,7 @@ function Catalog() {
   const [selectedCategory, setselectedCategory] = useState("");
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [itemsPerPage] = useState(8);
-  const [events] = getData("https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events.json");
+  const [events] = getData("https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/events.json");
 
   useEffect(() => {
     const filtered = events.filter((event) =>

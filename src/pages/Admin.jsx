@@ -60,7 +60,7 @@ const mockCustomers = [
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [events] = getData(
-    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events.json"
+    "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/events.json"
   );
 
   let Photography = events.filter(event => event.category === "Photography");
@@ -78,10 +78,10 @@ const Admin = () => {
     { name: "wellness", count: wellness.length },
   ];
   const [messages, setMessage] = getData(
-    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/messages.json"
+    "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/messages.json"
   );
   let [customers] = getData(
-    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
+    "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/users/customers.json"
   );
   let activeCustomers = customers.filter(customer => customer.active === true);
   let inactiveCustomers = customers.filter(
@@ -116,7 +116,7 @@ const Admin = () => {
     };
     try {
       const response = await axios.post(
-        "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events.json",
+        "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/events.json",
         newEvent
       );
       if (response.status === 200) {
@@ -155,7 +155,7 @@ const Admin = () => {
   };
 
   const activeToggle = (id, status) => {
-    const url = `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
+    const url = `https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/users/customers/${id}.json`;
 
     if (status) {
       postData(url, { active: false });
@@ -330,7 +330,7 @@ const Admin = () => {
                 onSubmit={e =>
                   handleUpdate(
                     id,
-                    "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events",
+                    "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/events",
                     e
                   )
                 }
@@ -423,7 +423,7 @@ const Admin = () => {
                         onClick={() =>
                           handleDeleteEvent(
                             event.key,
-                            `https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/events/`
+                            `https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/events/`
                           )
                         }
                         className="text-red-500"
@@ -497,7 +497,7 @@ const Admin = () => {
                           onClick={() =>
                             handleDeleteEvent(
                               customer.key,
-                              "https://culture-2-default-rtdb.europe-west1.firebasedatabase.app/users/customers"
+                              "https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/users/customers"
                             )
                           }
                         />
