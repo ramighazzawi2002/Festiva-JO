@@ -402,11 +402,14 @@ export default function Home() {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex justify-between">
+                  <p className="text-gray-600 mb-2">{festival.date}</p>
+                  <p className="text-gray-600 mb-4">{festival.location}</p>
+                  </div>
+                  
                   <h3 className="text-xl font-bold mb-2 text-page1">
                     {festival.name}
                   </h3>
-                  <p className="text-gray-600 mb-2">{festival.date}</p>
-                  <p className="text-gray-600 mb-4">{festival.location}</p>
                   <p className="text-gray-600 mb-4 flex-1">{festival.description}</p>
                   <Link
                     to={`/festivals/${festival.id}`}

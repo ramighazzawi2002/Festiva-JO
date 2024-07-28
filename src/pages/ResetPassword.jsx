@@ -20,8 +20,15 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="max-w-sm mx-auto p-6 bg-white shadow-md rounded-lg mt-48">
-      <h3 className="text-2xl font-semibold mb-6 text-center">Reset Password</h3>
+    <div
+    className="pg-page flex items-center justify-center p-36  bg-cover bg-center "
+    style={{ backgroundImage: `url(./src/assets/img/bg.png)` }}
+  >
+    
+    <div className="max-w-md  m-24 p-8 bg-white  bg-opacity-80 shadow-lg rounded-lg"
+    
+    >
+      <h3 className="text-2xl font-semibold mb-6 text-center text-page1">Reset Password</h3>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {message && <div className="text-green-500 mb-4">{message}</div>}
       <input
@@ -42,6 +49,7 @@ const ResetPassword = () => {
           <p>Back to Login</p>
         </Link>
       </div>
+    </div>
     </div>
   );
 };

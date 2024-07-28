@@ -77,20 +77,7 @@ const Details = () => {
     }
   };
 
-  // const handlePurchase = () => {
-  //   const ticketOrgPrice = event.tickets[`ticket_id_${ticketOrgId}`].price || 0;
-  //   const ticketVipPrice = event.tickets[`ticket_id_${ticketVipId}`].price || 0;
-  //   const total = (ticketOrgPrice * tichOrgCount) + (ticketVipPrice * tichVipCount);
-  //   setTotalPrice(total);
-
-   
-  //   sessionStorage.setItem('totalPrice', total);
-  //   sessionStorage.setItem('orgCount', tichOrgCount);
-  //   sessionStorage.setItem('vipCount', tichVipCount);
-  //   sessionStorage.setItem('orgExist', tichOrg);
-  //   sessionStorage.setItem('vipExist', tichVip);
-  //   navigate("/checkout");
-  // };
+ 
   const handlePurchase = () => {
     const totalPrice = (event.tickets[`ticket_id_${ticketOrgId}`].price * tichOrgCount) + (event.tickets[`ticket_id_${ticketVipId}`].price * tichVipCount);
     setTotalPrice(totalPrice);
