@@ -153,33 +153,31 @@ function Catalog() {
         </p>
         <p className="jor text-md md:text-lg">So, welcome to Jordan</p>
       </div>
-
-      <div className="mb-6 md:mb-8 lg:mb-10">
-        {/* search input  */}
-        <form className="relative max-w-md mx-auto">
-          <input
-            type="text"
-            placeholder="Search events..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full border p-2 pl-10 rounded-lg"
-          />
-          <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
-        </form>
-      </div>
+      <div className="mb-6 md:mb-8 lg:mb-10 px-4">
+  <form className="relative max-w-full sm:max-w-md mx-auto">
+    <input
+      type="text"
+      placeholder="Search events..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="w-full border p-2 pl-10 rounded-lg"
+    />
+    <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
+  </form>
+</div>
 
       <div className="flex flex-wrap justify-center gap-4 mb-8">
         {["All", "Nature", "Film", "Food", "Art", "Sports", "Culture", "Theater"].map(category => (
           <div key={category} className="flex flex-col items-center">
             <button
               onClick={() => setselectedCategory(category)}
-              className="w-24 h-24 rounded-full  flex items-center justify-center hover:bg-red2"
+              className="w-16 h-16  rounded-full  flex items-center justify-center  hover:bg-red2"
             >
               {icons[category] || (
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                
                 >
-                  {/* Default SVG */}
+             
                 </svg>
               )}
             </button>
@@ -189,36 +187,37 @@ function Catalog() {
       </div>
      
 
-      <div className="grid grid-cols-4 mb-4 gap-y-8 max-w-[80rem] mx-auto">
-        {currentItems.map(event => (
-         <div
-                key={event.event_id}
-                
-                className="bg-white w-[300px] p-3 rounded-lg overflow-hidden shadow-md  mx-auto transition-transform transform hover:scale-105 hover:shadow-lg"
-              >
-         <img
-           src={event.image}        
-           alt={event.title}
-           
-           className="w-full h-40 object-cover transition-opacity duration-500 ease-in-out"
-          />
-          <div  className="mt-8 flex flex-col h-full">
-            <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
-            {/* <p className="text-gray-600">{event.description}</p> */}
-            <p className="text-gray-600">{event.city}</p>
-            <p className="text-gray-600">{event.date}</p>
-            <p className="text-gray-800">{event.description}</p>
-           
-            <Link to={`/details/${event.key}`} >
-                  <button className=" bg-red1 hover:bg-red2 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red1">
-                    View Details
-                  </button>
-            </Link>
-                
-          </div>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4 gap-y-8 max-w-[80rem] mx-auto px-4">
+  {currentItems.map(event => (
+    <div
+      key={event.event_id}
+      className="bg-white w-full sm:w-[300px] p-3 rounded-lg overflow-hidden shadow-md mx-auto transition-transform transform hover:scale-105 hover:shadow-lg flex flex-col"
+    >
+      <img
+        src={event.image}
+        alt={event.title}
+        className="w-full h-40 object-cover transition-opacity duration-500 ease-in-out"
+      />
+      <div className="mt-8 flex flex-col flex-grow">
+        <div className='flex items-center justify-between mb-2 text-gray-600'>
+          <p>{event.city}</p>
+          <p>{event.date}</p>
+        </div>
+        <h2 className="text-xl font-semibold mb-2 text-page1">{event.title}</h2>
+        <p className="text-gray-800 flex-grow">{event.description}</p>
+        <div className="mt-auto">
+          <Link to={`/details/${event.key}`}>
+            <button className="w-full bg-red1 hover:bg-red2 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red1">
+              View Details
+            </button>
+          </Link>
+        </div>
       </div>
+    </div>
+  ))}
+</div>
+
+
       <Pagination totalPages={totalPages} paginate={paginate} />
      
 

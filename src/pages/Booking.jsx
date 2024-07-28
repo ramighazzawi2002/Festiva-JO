@@ -215,7 +215,7 @@ const BookingConfirmed = () => {
             </div>
             <button
               onClick={handleDownloadTicket}
-              className="w-full bg-blue-500 text-white px-4 py-2 rounded flex items-center justify-center"
+              className="w-full bg-red1 text-white px-4 py-2 rounded flex items-center justify-center"
             >
               <Download className="mr-2" />
               Download Ticket (PDF)

@@ -26,7 +26,7 @@ import axios from "axios";
 import deletePostData from "../hooks/deleteData";
 import updatePostData from "../hooks/updateData";
 import Switch from "../components/Switch";
-// import ImageUpload from "../components/imageUpload";
+import ImageUpload from "../components/imageUpload";
 
 const mockEvents = [
   {
@@ -177,9 +177,15 @@ const Admin = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <div className="flex gap-4 items-center text-red1">
+      <img src="./src/assets/img/Logo11.png" alt="" width="80px" />
       <h1 className="text-3xl font-bold mb-6">Event Management Dashboard</h1>
-
-      {/* Navigation */}
+      </div>
+      <br />
+      {/* <img src="./src/assets/img/Logo11.png" alt="" />
+      <h1 className="text-3xl font-bold mb-6">Event Management Dashboard</h1>
+    */}
+      
       <nav className="flex mb-6">
         <button
           onClick={() => setActiveTab("overview")}
@@ -278,7 +284,7 @@ const Admin = () => {
             <h2 className="text-xl font-semibold mb-4">Event Management</h2>
             <button
               onClick={() => setShowAddEventForm(!showAddEventForm)}
-              className="bg-green-500 text-white px-4 py-2 rounded flex items-center mb-4"
+              className="bg-red1 text-white px-4 py-2 rounded flex items-center mb-4"
             >
               {showAddEventForm ? "Cancel" : "Add New Event"}
             </button>
@@ -321,7 +327,7 @@ const Admin = () => {
                 </div>
                 <button
                   type="submit"
-                  className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+                  className="mt-2 bg-red1 text-white px-4 py-2 rounded"
                 >
                   Add Event
                 </button>
@@ -401,7 +407,7 @@ const Admin = () => {
               </thead>
               <tbody>
                 {events.map(event => (
-                  <tr key={event.id} className="border-b even:bg-red2">
+                  <tr key={event.id} className="border-b even:bg-page">
                     <td className="p-2">{event.title}</td>
                     <td className="p-2">{event.date}</td>
                     <td className="p-2">{event.description}</td>
@@ -470,7 +476,7 @@ const Admin = () => {
               </thead>
               <tbody>
                 {filteredCustomers.map((customer, index) => (
-                  <tr key={customer.id} className="border-b even:bg-red2">
+                  <tr key={customer.id} className="border-b even:bg-page">
                     <td className="p-2">{customer.name}</td>
                     <td className="p-2">{customer.email}</td>
 
@@ -526,12 +532,12 @@ const Admin = () => {
               </thead>
               <tbody>
                 {messages.map(message => (
-                  <tr key={message.id} className="border-b even:bg-red2 ">
+                  <tr key={message.id} className="border-b even:bg-page ">
                     <td className="p-2">{message.name}</td>
                     <td className="p-2">{message.message}</td>
                     <td>{message.email}</td>
                     <td className="p-2">
-                      <button className="bg-blue-800 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center">
+                      <button className="bg-red1 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center">
                         <a
                           href={"mailto:" + message.email}
                           className="flex items-center"

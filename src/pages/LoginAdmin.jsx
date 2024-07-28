@@ -15,7 +15,6 @@ const LogInAdmin = () => {
     const adminsData = await axios.get(
       `https://culture-3-default-rtdb.europe-west1.firebasedatabase.app/users/admins.json`
     );
-    // Check if loginEmail exists and account is not marked as deleted or inactive
     let foundAdminEmail = false;
     let foundAdminPassword = false;
     let isDeletedAdmin = false;
@@ -71,8 +70,8 @@ const LogInAdmin = () => {
   return (
     <>
       <ErrorAlert error={errorMessage} show={show} />
-      <div className="max-w-sm mx-auto p-6 bg-white shadow-md rounded-lg mt-48">
-        <h3 className="text-2xl font-semibold mb-6 text-center">Login</h3>
+      <div className="max-w-sm mx-auto p-6 bg-white shadow-md rounded-lg mt-48 ">
+        <h3 className="text-2xl font-semibold mb-6 text-center text-page1">Login</h3>
         <input
           id="LogEmailAdmin"
           type="emailAdmin"
