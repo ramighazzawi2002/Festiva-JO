@@ -20,7 +20,7 @@ import DetailsPage from "./pages/DetailsPage";
 function App() {
   return (
     <>
-      <BrowserRouter basename="/Culture-festival-in-jordan/">
+      <BrowserRouter basename="/Festiva-JO/">
         <Routes>
           <Route path="/festivals/:id" element={<DetailsPage />} />
 
